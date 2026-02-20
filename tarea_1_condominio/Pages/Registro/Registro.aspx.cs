@@ -18,7 +18,6 @@ namespace tarea_1_condominio.Pages.Registro
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            UsuarioService service = new UsuarioService();
 
             Usuario nuevo = new Usuario
             {
@@ -33,7 +32,7 @@ namespace tarea_1_condominio.Pages.Registro
                 Password = txtPassword.Text
             };
 
-            string resultado = service.Registrar(nuevo);
+            string resultado = UsuarioService.Registrar(nuevo);
 
             lblMensaje.ForeColor = System.Drawing.Color.Green;
             lblMensaje.Text = resultado;

@@ -18,16 +18,14 @@ namespace tarea_1_condominio.Pages.Login
 
         protected void btnAuth_Click(object sender, EventArgs e)
         {
-            UsuarioService service = new UsuarioService();
-
             Usuario nuevo = new Usuario
             {
                 Correo = CondCorreo.Text,
                 Password = CondPassword.Text
-
             };
 
-            string resultado = service.Utenticar(nuevo);
+            // Call the static method directly on the static class
+            string resultado = UsuarioService.Utenticar(nuevo);
 
             if (resultado.Contains("Error")) 
             {
