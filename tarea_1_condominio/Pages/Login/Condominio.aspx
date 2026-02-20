@@ -8,7 +8,7 @@
 
      <div class="form-group">
     <label>Correo electrónico</label>
-    <asp:TextBox ID="CondCorreo" runat="server" CssClass="form-control" ClientIDMode="Static" required="required"/>
+    <asp:TextBox ID="CondCorreo" runat="server" CssClass="form-control" ClientIDMode="Static"/>
 </div>
 
 <div class="form-group">
@@ -23,4 +23,7 @@ OnClick="btnAuth_Click"
 ClientIDMode="Static"/>
 
      <asp:Label ID="lblMensaje" runat="server" />
+
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src='<%= ResolveUrl("~/Scripts/login.js") %>'></script>
 </asp:Content>

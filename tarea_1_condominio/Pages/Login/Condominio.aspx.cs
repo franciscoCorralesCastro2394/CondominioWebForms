@@ -29,7 +29,15 @@ namespace tarea_1_condominio.Pages.Login
 
             string resultado = service.Utenticar(nuevo);
 
-            lblMensaje.ForeColor = System.Drawing.Color.Green;
+            if (resultado.Contains("Error")) 
+            {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+            }
+            else 
+            { 
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
+            }
+
             lblMensaje.Text = resultado;
         }
     }
