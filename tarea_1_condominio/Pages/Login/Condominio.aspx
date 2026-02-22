@@ -3,6 +3,7 @@
     MasterPageFile="~/Site.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server" ClientIDMode="Static">
+   
     <h2>Login para Condómino</h2>
 
     <div class="form-group">

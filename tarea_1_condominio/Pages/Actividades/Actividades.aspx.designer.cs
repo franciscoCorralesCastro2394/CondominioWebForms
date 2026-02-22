@@ -159,13 +159,13 @@ namespace tarea_1_condominio.Pages.Actividades
         protected global::System.Web.UI.WebControls.TextBox txtDescripcionRecordatorio;
 
         /// <summary>
-        /// btnAuth control.
+        /// btnRegistrar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAuth;
+        protected global::System.Web.UI.WebControls.Button btnRegistrar;
 
         /// <summary>
         /// lblMensaje control.
@@ -175,5 +175,32 @@ namespace tarea_1_condominio.Pages.Actividades
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensaje;
+
+        /// <summary>
+        /// gvReuniones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvReuniones;
+
+        /// <summary>
+        /// gvSociales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvSociales;
+
+        /// <summary>
+        /// gvRecordatorios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvRecordatorios;
     }
 }

@@ -33,7 +33,8 @@ namespace tarea_1_condominio.Services
                 Filial = "A",
                 TieneConstruccion = true,
                 Correo = "corrales.castro.f55@gmail.com",
-                Password = "123"
+                Password = "123",
+                rol = "Admin"
             });
 
             ListaUsuarios.Add(new Usuario
@@ -46,7 +47,9 @@ namespace tarea_1_condominio.Services
                 Filial = "B",
                 TieneConstruccion = false,
                 Correo = "maria@condominio.com",
-                Password = "1234"
+                Password = "1234",
+                rol = ""
+
             });
 
             ListaUsuarios.Add(new Usuario
@@ -59,7 +62,9 @@ namespace tarea_1_condominio.Services
                 Filial = "C",
                 TieneConstruccion = true,
                 Correo = "juan@condominio.com",
-                Password = "1234"
+                Password = "1234",
+                rol = ""
+
             });
         }
 
@@ -94,6 +99,18 @@ namespace tarea_1_condominio.Services
             }
 
             return "Error el usuario y/o la contraseña son inválidos, intente de nuevo";
+        }
+
+
+        public static bool ValidarRol(string correo) 
+        {
+
+            return ListaUsuarios.Any(u => u.Correo == correo && u.rol == "Admin");
+        }
+
+        public static Usuario getUsuario(string correo)
+        {
+            return ListaUsuarios.FirstOrDefault(u => u.Correo == correo);
         }
     }
 }

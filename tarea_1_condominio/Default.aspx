@@ -14,11 +14,6 @@
       Login Condominio 
         </asp:HyperLink>
 
-                <asp:HyperLink ID="HyperLink3" runat="server"
-            NavigateUrl="~/Pages/Actividades/Actividades.aspx">
-      Actividades
-        </asp:HyperLink>
-
     </main>
 
 </asp:Content>

@@ -22,6 +22,7 @@ namespace tarea_1_condominio.Services
         {
             lista.Add(new Reunion
             {
+                Id = Guid.NewGuid().ToString(),
                 Titulo = "Asamblea General",
                 EsParaTodos = true,
                 FechaPublicacion = DateTime.Now,
@@ -30,11 +31,14 @@ namespace tarea_1_condominio.Services
                 DuracionEstimada = "2 horas",
                 Agenda = "Presupuesto anual",
                 UbicacionPresencial = "Salón Comunal",
-                EnlaceVirtual = "https://meet.com/asamblea"
+                EnlaceVirtual = "https://meet.com/asamblea",
+                Creador = "corrales.castro.f55@gmail.com",
+                estado = true
             });
 
             lista.Add(new ActividadSocial
             {
+                Id = Guid.NewGuid().ToString(),
                 Titulo = "Fiesta de Navidad",
                 EsParaTodos = true,
                 FechaPublicacion = DateTime.Now,
@@ -43,16 +47,21 @@ namespace tarea_1_condominio.Services
                 FechaFin = DateTime.Now.AddDays(15).AddHours(5),
                 Ubicacion = "Área BBQ",
                 Formato = "Informal",
-                Instrucciones = "Traer comida para compartir"
+                Instrucciones = "Traer comida para compartir",
+                Creador = "corrales.castro.f55@gmail.com",
+                estado = true
             });
 
             lista.Add(new Recordatorio
             {
+                Id = Guid.NewGuid().ToString(),
                 Titulo = "Pago de cuota mensual",
                 EsParaTodos = true,
                 FechaPublicacion = DateTime.Now,
                 FechaCierre = DateTime.Now.AddDays(5),
-                Descripcion = "Recordatorio de pago antes del día 5."
+                Descripcion = "Recordatorio de pago antes del día 5.",
+                Creador = "corrales.castro.f55@gmail.com",
+                estado = true
             });
         }
 
@@ -66,6 +75,20 @@ namespace tarea_1_condominio.Services
                 return "Error " + e.Message;
             }
 
+        }
+
+
+        public static string EliminarActividad(string id)
+        {
+            var actividad = ListaActividades.FirstOrDefault(a => a.Id == id);
+
+            if (actividad != null)
+            {
+                ListaActividades.Remove(actividad);
+                return "Actividad eliminada correctamente.";
+            }
+
+            return "Error No se encontró la actividad con el ID proporcionado.";
         }
     }
 }

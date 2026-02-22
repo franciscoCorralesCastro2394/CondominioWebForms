@@ -18,14 +18,14 @@ namespace tarea_1_condominio.Pages.Login
 
         protected void btnAuth_Click(object sender, EventArgs e)
         {
-            Usuario nuevo = new Usuario
+            Usuario usuarioAuth = new Usuario
             {
                 Correo = CondCorreo.Text,
                 Password = CondPassword.Text
             };
 
             // Call the static method directly on the static class
-            string resultado = UsuarioService.Utenticar(nuevo);
+            string resultado = UsuarioService.Utenticar(usuarioAuth);
 
             if (resultado.Contains("Error")) 
             {
@@ -34,9 +34,14 @@ namespace tarea_1_condominio.Pages.Login
             else 
             { 
                 lblMensaje.ForeColor = System.Drawing.Color.Green;
+
+                Session["Usuario"] = usuarioAuth;
+                Response.Redirect("~/Pages/Gestion/Gestion.aspx");
             }
 
             lblMensaje.Text = resultado;
+
+
         }
     }
 }

@@ -12,19 +12,29 @@ namespace tarea_1_condominio.Pages.Actividades
 {
     public partial class Actividades : System.Web.UI.Page
     {
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            // Bind data early in the lifecycle so controls and event-validation entries
+            // are created before postback/event handling.
+            CargarTablas();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
+            // Obtiene el usuario loggeado para asignarlo como creador de la actividad
             String resultado = string.Empty;
+            var usuarioLoggeado = (Usuario)Session["Usuario"];
 
+            // Crea la actividad dependiendo del tipo seleccionado en el dropdown
             if (ddlTipoActividad.SelectedValue == "Reunion")
             {
                 Reunion reunion = new Reunion
                 {
+                    Id = Guid.NewGuid().ToString(),
                     Titulo = txtTitulo.Text,
                     EsParaTodos = chkTodos.Checked,
                     FechaPublicacion = DateTime.Parse(txtFechaPublicacion.Text),
@@ -33,7 +43,9 @@ namespace tarea_1_condominio.Pages.Actividades
                     DuracionEstimada = txtDuracion.Text,
                     Agenda = txtAgenda.Text,
                     UbicacionPresencial = txtUbicacionPresencial.Text,
-                    EnlaceVirtual = txtEnlaceVirtual.Text
+                    EnlaceVirtual = txtEnlaceVirtual.Text,
+                    Creador = usuarioLoggeado.Correo,
+                    estado = true
                 };
 
                 resultado = ActividadService.AgregarActividad(reunion);
@@ -43,6 +55,7 @@ namespace tarea_1_condominio.Pages.Actividades
             {
                 ActividadSocial actividad = new ActividadSocial
                 {
+                    Id = Guid.NewGuid().ToString(),
                     Titulo = txtTitulo.Text,
                     EsParaTodos = chkTodos.Checked,
                     FechaPublicacion = DateTime.Parse(txtFechaPublicacion.Text),
@@ -51,7 +64,10 @@ namespace tarea_1_condominio.Pages.Actividades
                     FechaFin = DateTime.Parse(txtFechaFin.Text),
                     Ubicacion = txtUbicacionSocial.Text,
                     Formato = ddlFormato.Text,
-                    Instrucciones = txtInstrucciones.Text
+                    Instrucciones = txtInstrucciones.Text,
+                    Creador = usuarioLoggeado.Correo,
+                    estado = true
+
                 };
 
                 resultado = ActividadService.AgregarActividad(actividad);
@@ -61,18 +77,20 @@ namespace tarea_1_condominio.Pages.Actividades
             {
                 Recordatorio recordatorio = new Recordatorio
                 {
+                    Id = Guid.NewGuid().ToString(),
                     Titulo = txtTitulo.Text,
                     EsParaTodos = chkTodos.Checked,
                     FechaPublicacion = DateTime.Parse(txtFechaPublicacion.Text),
                     FechaCierre = DateTime.Parse(txtFechaCierre.Text),
-                    Descripcion = txtDescripcionRecordatorio.Text
-
+                    Descripcion = txtDescripcionRecordatorio.Text,
+                    Creador = usuarioLoggeado.Correo,
+                    estado = true
                 };
 
                 resultado = ActividadService.AgregarActividad(recordatorio);
             }
 
-
+            // Muestra un mensaje dependiendo del resultado de la creación de la actividad
             if (resultado.Contains("Error"))
             {
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
@@ -84,6 +102,83 @@ namespace tarea_1_condominio.Pages.Actividades
 
             lblMensaje.Text = resultado;
 
+            Response.Redirect(Request.RawUrl);
+            // Recraga las tablas despues de crear 
+            CargarTablas();
+
         }
+
+
+        private void CargarTablas()
+        {
+            // Obtiene la lista de actividades
+            var lista = ActividadService.ListaActividades;
+
+
+            //Lista las activiades que han sido creadas
+            //por el usuario loggeado, que esten activas y
+            //que no hayan pasado su fecha de cierre
+            var activiadesUsuario = lista.Where(
+                                                a => a.Creador == ((Usuario)Session["Usuario"]).Correo
+                                                && a.estado == true && a.FechaCierre > DateTime.Now
+                                                ).ToList();
+
+            // Separa las actividades por tipo para mostrarlas en tablas diferentes
+            var reuniones = activiadesUsuario.OfType<Reunion>().ToList();
+            var sociales = activiadesUsuario.OfType<ActividadSocial>().ToList();
+            var recordatorios = activiadesUsuario.OfType<Recordatorio>().ToList();
+
+            gvReuniones.DataSource = reuniones;
+            gvReuniones.DataBind();
+
+            gvSociales.DataSource = sociales;
+            gvSociales.DataBind();
+
+            gvRecordatorios.DataSource = recordatorios;
+            gvRecordatorios.DataBind();
+        }
+
+
+        protected void gvReuniones_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            AccionesActividad(e);
+        }
+
+        protected void gvActividad_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            AccionesActividad(e);
+        }
+
+        protected void gvRecordatorio_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            AccionesActividad(e);
+        }
+
+        protected void AccionesActividad(GridViewCommandEventArgs e) 
+        {
+            // Obtiene el id de la actividad a eliminar o editar
+            string id = e.CommandArgument.ToString();
+
+            if (e.CommandName == "Eliminar")
+            {
+                // Elimina la actividad y recarga las tablas
+                ActividadService.EliminarActividad(id);
+                CargarTablas();
+            }
+
+            if (e.CommandName == "Editar")
+            {
+                Response.Redirect("~/Pages/EditarActividad.aspx?id=" + id);
+            }
+
+            if (e.CommandName == "Detalles") 
+            {
+                Response.Redirect("~/Pages/Actividades/Detalles.aspx?id=" + id);
+            }
+
+        }
+
+
+       
     }
 }

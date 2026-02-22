@@ -16,5 +16,7 @@ namespace tarea_1_condominio.Models
         public bool TieneConstruccion { get; set; }
         public string Correo { get; set; }
         public string Password { get; set; }
+
+        public string rol { get; set; }
     }
 }

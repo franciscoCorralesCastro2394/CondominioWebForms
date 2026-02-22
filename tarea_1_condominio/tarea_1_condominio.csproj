@@ -122,6 +122,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Pages\Actividades\Actividades.aspx" />
+    <Content Include="Pages\Actividades\Detalles.aspx" />
+    <Content Include="Pages\Gestion\Gestion.aspx" />
     <Content Include="Pages\Login\Condominio.aspx" />
     <Content Include="Pages\Registro\Registro.aspx" />
     <Content Include="Scripts\actividades.js" />
@@ -226,6 +228,20 @@
     </Compile>
     <Compile Include="Pages\Actividades\Actividades.aspx.designer.cs">
       <DependentUpon>Actividades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Actividades\Detalles.aspx.cs">
+      <DependentUpon>Detalles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Actividades\Detalles.aspx.designer.cs">
+      <DependentUpon>Detalles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Gestion\Gestion.aspx.cs">
+      <DependentUpon>Gestion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Gestion\Gestion.aspx.designer.cs">
+      <DependentUpon>Gestion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Login\Condominio.aspx.cs">
       <DependentUpon>Condominio.aspx</DependentUpon>
