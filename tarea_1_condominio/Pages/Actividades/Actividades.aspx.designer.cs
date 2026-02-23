@@ -15,6 +15,15 @@ namespace tarea_1_condominio.Pages.Actividades
     {
 
         /// <summary>
+        /// btnVolver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVolver;
+
+        /// <summary>
         /// ddlTipoActividad control.
         /// </summary>
         /// <remarks>

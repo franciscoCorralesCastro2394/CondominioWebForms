@@ -6,7 +6,14 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server" ClientIDMode="Static">
     <h2>Activiades</h2>
+    <asp:Button
+        ID="btnVolver"
+        runat="server"
+        Text="Volver a Gestion"
+        OnClick="btnVolver_Click"
+        CssClass="form-control" />
 
+    <br />
 
     <%-- Selector de actividades  --%>
 
@@ -223,8 +230,7 @@
     <h2>Actividades Sociales</h2>
     <asp:GridView ID="gvSociales" runat="server" AutoGenerateColumns="false" CssClass="form-control"
         DataKeyNames="Id"
-        OnRowCommand="gvActividad_RowCommand"
-        >
+        OnRowCommand="gvActividad_RowCommand">
         <Columns>
             <asp:BoundField DataField="Titulo" HeaderText="Título" />
             <asp:BoundField DataField="TipoActividad" HeaderText="Tipo Actividad" />
@@ -277,8 +283,7 @@
     <h2>Recordatorios</h2>
     <asp:GridView ID="gvRecordatorios" runat="server" AutoGenerateColumns="false" CssClass="form-control"
         DataKeyNames="Id"
-        OnRowCommand="gvRecordatorio_RowCommand"
-        >
+        OnRowCommand="gvRecordatorio_RowCommand">
 
         <Columns>
             <asp:BoundField DataField="Titulo" HeaderText="Título" />

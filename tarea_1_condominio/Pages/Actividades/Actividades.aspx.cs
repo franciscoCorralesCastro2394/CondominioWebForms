@@ -179,6 +179,12 @@ namespace tarea_1_condominio.Pages.Actividades
         }
 
 
-       
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Pages/Gestion/Gestion.aspx");
+        }
+
+
+
     }
 }

@@ -14,6 +14,9 @@
     CssClass="form-control"     
         />
 
+    <br/>
+    <br/>
+
 
     <h2>Detalle de la Actividad</h2>
 
