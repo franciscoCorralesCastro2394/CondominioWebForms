@@ -33,7 +33,8 @@ namespace tarea_1_condominio.Services
                 UbicacionPresencial = "Salón Comunal",
                 EnlaceVirtual = "https://meet.com/asamblea",
                 Creador = "corrales.castro.f55@gmail.com",
-                estado = true
+                estado = true,
+                EstadoActividad = "Próxima"
             });
 
             lista.Add(new ActividadSocial
@@ -49,7 +50,9 @@ namespace tarea_1_condominio.Services
                 Formato = "Informal",
                 Instrucciones = "Traer comida para compartir",
                 Creador = "corrales.castro.f55@gmail.com",
-                estado = true
+                estado = true,
+                EstadoActividad = "En curso"
+
             });
 
             lista.Add(new Recordatorio
@@ -61,7 +64,57 @@ namespace tarea_1_condominio.Services
                 FechaCierre = DateTime.Now.AddDays(5),
                 Descripcion = "Recordatorio de pago antes del día 5.",
                 Creador = "corrales.castro.f55@gmail.com",
-                estado = true
+                estado = true,
+                EstadoActividad = "Finalizada"
+            });
+
+
+            lista.Add(new Reunion
+            {
+                Id = Guid.NewGuid().ToString(),
+                Titulo = "Asamblea General",
+                EsParaTodos = true,
+                FechaPublicacion = DateTime.Now,
+                FechaCierre = DateTime.Now.AddDays(7),
+                FechaHoraReunion = DateTime.Now.AddDays(2),
+                DuracionEstimada = "2 horas",
+                Agenda = "Presupuesto anual",
+                UbicacionPresencial = "Salón Comunal",
+                EnlaceVirtual = "https://meet.com/asamblea",
+                Creador = "test@test.com",
+                estado = true,
+                EstadoActividad = "Próxima"
+            });
+
+            lista.Add(new ActividadSocial
+            {
+                Id = Guid.NewGuid().ToString(),
+                Titulo = "Fiesta de Navidad",
+                EsParaTodos = true,
+                FechaPublicacion = DateTime.Now,
+                FechaCierre = DateTime.Now.AddDays(10),
+                FechaInicio = DateTime.Now.AddDays(15),
+                FechaFin = DateTime.Now.AddDays(15).AddHours(5),
+                Ubicacion = "Área BBQ",
+                Formato = "Informal",
+                Instrucciones = "Traer comida para compartir",
+                Creador = "test@test.com",
+                estado = true,
+                EstadoActividad = "En curso"
+
+            });
+
+            lista.Add(new Recordatorio
+            {
+                Id = Guid.NewGuid().ToString(),
+                Titulo = "Pago de cuota mensual",
+                EsParaTodos = true,
+                FechaPublicacion = DateTime.Now,
+                FechaCierre = DateTime.Now.AddDays(5),
+                Descripcion = "Recordatorio de pago antes del día 5.",
+                Creador = "test@test.com",
+                estado = true,
+                EstadoActividad = "Finalizada"
             });
         }
 
@@ -84,11 +137,51 @@ namespace tarea_1_condominio.Services
 
             if (actividad != null)
             {
-                ListaActividades.Remove(actividad);
+                //ListaActividades.Remove(actividad);
+                actividad.estado = false;
+                actividad.EstadoActividad = "Finalizada";
                 return "Actividad eliminada correctamente.";
             }
 
             return "Error No se encontró la actividad con el ID proporcionado.";
         }
+
+
+        public static string ActualizarActividad(Actividad actividadEditada)
+        {
+            var actividad = ListaActividades
+                .FirstOrDefault(a => a.Id == actividadEditada.Id);
+
+            if (actividad == null)
+                return "Error no hay considencias";
+
+            // Actualizar propiedades comunes
+            actividad.Titulo = actividadEditada.Titulo;
+            actividad.FechaPublicacion = actividadEditada.FechaPublicacion;
+            actividad.FechaCierre = actividadEditada.FechaCierre;
+
+            // Si manejas herencia
+            if (actividad is Reunion reunionOriginal &&
+                actividadEditada is Reunion reunionEditada)
+            {
+                reunionOriginal.FechaHoraReunion = reunionEditada.FechaHoraReunion;
+            }
+
+            if (actividad is ActividadSocial socialOriginal &&
+                actividadEditada is ActividadSocial socialEditada)
+            {
+                socialOriginal.FechaInicio = socialEditada.FechaInicio;
+                socialOriginal.FechaFin = socialEditada.FechaFin;
+            }
+
+            if (actividad is Recordatorio recordatorioOriginal &&
+                actividadEditada is Recordatorio recordatorioEditado)
+            {
+                recordatorioOriginal.Descripcion = recordatorioEditado.Descripcion;
+            }
+
+            return "Actividad Actualizada con exito";
+        }
+
     }
 }

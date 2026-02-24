@@ -18,10 +18,6 @@ namespace tarea_1_condominio.Models
         
         public bool estado { get; set; }
 
-        //public bool EstaActiva()
-        //{
-        //    var ahora = DateTime.Now;
-        //    return ahora >= FechaPublicacion && ahora <= FechaCierre;
-        //}
+        public string EstadoActividad { get; set; }
     }
 }

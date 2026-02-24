@@ -62,7 +62,19 @@ namespace tarea_1_condominio.Pages.Actividades
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Pages/Actividades/Actividades.aspx");
+            var usuario = (Usuario)Session["Usuario"];
+
+
+            if (UsuarioService.ValidarRolCondominio(usuario.Correo)) 
+            {
+                Response.Redirect("~/Pages/Gestion/Gestion.aspx");
+            }
+
+            if (UsuarioService.ValidarRol(usuario.Correo))
+            {
+                Response.Redirect("~/Pages/Actividades/Actividades.aspx");
+            }
+            
         }
     }
 }

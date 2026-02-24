@@ -66,6 +66,20 @@ namespace tarea_1_condominio.Services
                 rol = ""
 
             });
+
+            ListaUsuarios.Add(new Usuario
+            {
+                TipoId = "Cedula",
+                Identificacion = "101110111",
+                Nombre = "Carlos",
+                Apellidos = "Ramírez Soto",
+                FechaNacimiento = new DateTime(1985, 5, 10),
+                Filial = "A",
+                TieneConstruccion = true,
+                Correo = "test@test.com",
+                Password = "123",
+                rol = "Condomino"
+            });
         }
 
         public static Usuario UsuarioAuth(string correo, string pass)
@@ -101,13 +115,20 @@ namespace tarea_1_condominio.Services
             return "Error el usuario y/o la contraseña son inválidos, intente de nuevo";
         }
 
-
+        //Validar el Rol Admin
         public static bool ValidarRol(string correo) 
         {
 
             return ListaUsuarios.Any(u => u.Correo == correo && u.rol == "Admin");
         }
 
+        //Validar el Rol Condominio paar ver actividades 
+        public static bool ValidarRolCondominio(string correo)
+        {
+            return ListaUsuarios.Any(u => u.Correo == correo && u.rol == "Condomino");
+        }
+
+        //Obtiene el usuario en base al correo
         public static Usuario getUsuario(string correo)
         {
             return ListaUsuarios.FirstOrDefault(u => u.Correo == correo);

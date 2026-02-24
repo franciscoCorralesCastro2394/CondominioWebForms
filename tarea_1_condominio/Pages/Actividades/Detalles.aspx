@@ -21,7 +21,7 @@
     <h2>Detalle de la Actividad</h2>
 
     <p><b>Título:</b>
-        <asp:Label ID="lblTitulo" runat="server" /></p>
+        <asp:Label ID="lblTitulo" runat="server" CssClass="form-control" /></p>
     <p><b>Fecha Publicación:</b>
         <asp:Label ID="lblPublicacion" runat="server" /></p>
     <p><b>Fecha Cierre:</b>
@@ -29,12 +29,12 @@
     <p><b>Creado Por:</b>
         <asp:Label ID="lblCreadoPor" runat="server" /></p>
 
-    <asp:Panel ID="pnlReunion" runat="server" Visible="false">
+    <asp:Panel ID="pnlReunion" runat="server" Visible="false" CssClass="form-control">
         <p><b>Fecha Reunión:</b>
             <asp:Label ID="lblFechaReunion" runat="server" /></p>
     </asp:Panel>
 
-    <asp:Panel ID="pnlSocial" runat="server" Visible="false">
+    <asp:Panel ID="pnlSocial" runat="server" Visible="false" CssClass="form-control">
         <p><b>Fecha Inicio:</b>
             <asp:Label ID="lblInicio" runat="server" /></p>
         <p><b>Fecha Fin:</b>

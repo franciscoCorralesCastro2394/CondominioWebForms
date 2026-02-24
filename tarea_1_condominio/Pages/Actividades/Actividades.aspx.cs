@@ -14,8 +14,14 @@ namespace tarea_1_condominio.Pages.Actividades
     {
         protected void Page_Init(object sender, EventArgs e)
         {
-            // Bind data early in the lifecycle so controls and event-validation entries
-            // are created before postback/event handling.
+      
+            if (Session["Usuario"] == null)
+            {
+                Response.Redirect("~/Pages/Login/Condominio.aspx");
+                return;
+            }
+
+       
             CargarTablas();
         }
 
@@ -45,7 +51,9 @@ namespace tarea_1_condominio.Pages.Actividades
                     UbicacionPresencial = txtUbicacionPresencial.Text,
                     EnlaceVirtual = txtEnlaceVirtual.Text,
                     Creador = usuarioLoggeado.Correo,
-                    estado = true
+                    estado = true,
+                    EstadoActividad = "Próxima"
+
                 };
 
                 resultado = ActividadService.AgregarActividad(reunion);
@@ -66,7 +74,9 @@ namespace tarea_1_condominio.Pages.Actividades
                     Formato = ddlFormato.Text,
                     Instrucciones = txtInstrucciones.Text,
                     Creador = usuarioLoggeado.Correo,
-                    estado = true
+                    estado = true,
+                    EstadoActividad = "Próxima"
+
 
                 };
 
@@ -84,7 +94,9 @@ namespace tarea_1_condominio.Pages.Actividades
                     FechaCierre = DateTime.Parse(txtFechaCierre.Text),
                     Descripcion = txtDescripcionRecordatorio.Text,
                     Creador = usuarioLoggeado.Correo,
-                    estado = true
+                    estado = true,
+                    EstadoActividad = "Próxima"
+
                 };
 
                 resultado = ActividadService.AgregarActividad(recordatorio);
@@ -168,7 +180,7 @@ namespace tarea_1_condominio.Pages.Actividades
 
             if (e.CommandName == "Editar")
             {
-                Response.Redirect("~/Pages/EditarActividad.aspx?id=" + id);
+                Response.Redirect("~/Pages/Actividades/Editar.aspx?id=" + id);
             }
 
             if (e.CommandName == "Detalles") 

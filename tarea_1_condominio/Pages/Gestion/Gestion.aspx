@@ -10,11 +10,13 @@
 
 
     <div id="divActividades" runat="server" visible="false">
-    <asp:Button ID="btnIrActividades" 
-        runat="server" 
-        Text="Gestión de mensajes" 
-        PostBackUrl="~/Pages/Actividades/Actividades.aspx" />
-</div>
+        <asp:Button ID="btnIrActividades"
+            runat="server"
+            Text="Gestión de mensajes"
+            PostBackUrl="~/Pages/Actividades/Actividades.aspx" 
+            CssClass="form-control"
+            />
+    </div>
 
 
     <div class="card">
@@ -64,6 +66,44 @@
 
         <br />
     </div>
+
+
+<div id="actividadesCondominio" runat="server" visible="false">
+
+<h2>Actividades del condominio</h2>
+
+ <asp:GridView ID="gvActividadesCondominio" runat="server" CssClass="form-control"
+     AutoGenerateColumns="false"
+     DataKeyNames="Id"
+     OnRowCommand="gvActividadesCondominio_RowCommand">
+
+     <Columns>
+         <asp:BoundField DataField="Titulo" HeaderText="Título" />
+         <asp:BoundField DataField="TipoActividad" HeaderText="Tipo Actividad" />
+         <asp:BoundField DataField="FechaPublicacion" HeaderText="Fecha Inicio" />
+         <asp:BoundField DataField="FechaCierre" HeaderText="Fecha Cierre" />
+         <asp:BoundField DataField="EstadoActividad" HeaderText="Estado" />
+
+         <asp:TemplateField HeaderText="DetallesActividad">
+             <ItemTemplate>
+                 <asp:Button
+                     ID="DetallesActividad"
+                     runat="server"
+                     Text="DetallesActividad"
+                     CommandName="DetallesActividad"
+                     CommandArgument='<%# Eval("Id") %>'
+                     CssClass="form-control" />
+             </ItemTemplate>
+         </asp:TemplateField>
+     </Columns>
+ </asp:GridView>
+
+</div>
+
+
+
+
+
     <asp:Button ID="btnCerrarSesion" runat="server"
         Text="Cerrar Sesión"
         OnClick="btnCerrarSesion_Click" />

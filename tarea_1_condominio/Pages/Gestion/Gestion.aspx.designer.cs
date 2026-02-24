@@ -114,6 +114,24 @@ namespace tarea_1_condominio.Pages.Gestion
         protected global::System.Web.UI.WebControls.Label lblCorreo;
 
         /// <summary>
+        /// actividadesCondominio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl actividadesCondominio;
+
+        /// <summary>
+        /// gvActividadesCondominio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvActividadesCondominio;
+
+        /// <summary>
         /// btnCerrarSesion control.
         /// </summary>
         /// <remarks>

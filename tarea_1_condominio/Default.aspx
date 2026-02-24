@@ -9,6 +9,11 @@
             Registrarse
         </asp:HyperLink>
 
+        <br />   
+        <br />   
+
+
+
         <asp:HyperLink ID="HyperLink1" runat="server"
             NavigateUrl="~/Pages/Login/Condominio.aspx">
       Login Condominio 
